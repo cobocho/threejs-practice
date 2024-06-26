@@ -1,0 +1,24 @@
+body {
+	margin: 0;
+	padding: 0;
+
+	background-color: lavender;
+}
+
+.container {
+	position: fixed;
+	bottom: 100px;
+	left: 50%;
+	transform: translateX(-50%);
+
+	display: flex;
+	gap: 6px;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+button:hover {
+	cursor: pointer;
+}
