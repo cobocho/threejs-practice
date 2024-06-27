@@ -1,27 +1,33 @@
 import './style.css';
-import * as Three from 'three';
 
-function init() {
-	const renderer = new Three.WebGLRenderer({
+import * as THREE from 'three';
+
+window.addEventListener('load', function () {
+	init();
+});
+
+async function init() {
+	const canvas = document.querySelector('#canvas')!;
+
+	const renderer = new THREE.WebGLRenderer({
 		antialias: true,
+		canvas,
 	});
-	renderer.setSize(window.innerWidth, window.innerHeight);
-	document.body.appendChild(renderer.domElement);
 
-	const scene = new Three.Scene();
-	const camera = new Three.PerspectiveCamera(
+	renderer.setSize(window.innerWidth, window.innerHeight);
+
+	const scene = new THREE.Scene();
+
+	const camera = new THREE.PerspectiveCamera(
 		75,
 		window.innerWidth / window.innerHeight,
 		1,
 		500,
 	);
 
-	function handleResize() {
-		renderer.setSize(window.innerWidth, window.innerHeight);
-		camera.aspect = window.innerWidth / window.innerHeight;
-		camera.updateProjectionMatrix();
-		renderer.render(scene, camera);
-	}
+	camera.position.set(0, 25, 150);
+
+	render();
 
 	function render() {
 		renderer.render(scene, camera);
@@ -29,11 +35,15 @@ function init() {
 		requestAnimationFrame(render);
 	}
 
-	render();
+	function handleResize() {
+		camera.aspect = window.innerWidth / window.innerHeight;
+
+		camera.updateProjectionMatrix();
+
+		renderer.setSize(window.innerWidth, window.innerHeight);
+
+		renderer.render(scene, camera);
+	}
 
 	window.addEventListener('resize', handleResize);
 }
-
-window.addEventListener('load', () => {
-	init();
-});
