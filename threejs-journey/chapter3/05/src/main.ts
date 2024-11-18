@@ -17,7 +17,7 @@ scene.add(cube);
 
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height);
 
-camera.position.set(0, 0, 2);
+camera.position.set(0, 0, 3);
 
 scene.add(camera);
 
@@ -34,7 +34,7 @@ const clock = new THREE.Clock();
 
 const tick = () => {
 	const elapsedTime = clock.getElapsedTime();
-	console.log('elapsedTime: ' + elapsedTime);
+	console.log(elapsedTime);
 
 	cube.rotation.y = elapsedTime * Math.PI * 2;
 
